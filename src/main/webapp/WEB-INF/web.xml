@@ -1,0 +1,80 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd ">
+    <display-name>Archetype Created Web Application</display-name>
+
+
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- web启动时自动运行监听器 -->
+    <!-- WebApplicationContext上下文，称为父上下文（父容器）  -->
+    <!-- 保存在ServletContext中，key是WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE的值。 -->
+    <!-- 可以使用Spring提供的工具类取出上下文对象：WebApplicationContextUtils.getWebApplicationContext(ServletContext); -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- 从类路径下加载spring配置文件 -->
+    <!-- 逗号，空格分隔多个配置文件 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+
+
+
+    <!-- *************spring mvc****************** -->
+    <!-- 配置DispatcherServlet -->
+    <!-- 每个DispatcherServlet对应一个WebApplicationContext，称为子上下文（子容器） -->
+    <!-- 子上下文可以访问父上下文中的内容，但父上下文不能访问子上下文中的内容 -->
+    <!-- 它也保存在 ServletContext中，key是"org.springframework.web.servlet.FrameworkServlet.CONTEXT"+Servlet名称 -->
+    <!-- 当一个Request对象产生时，会把这个子上下文对象（WebApplicationContext）保存在Request对象中，key是DispatcherServlet.class.getName() + ".CONTEXT" -->
+    <!-- 可以使用工具类取出上下文对象：RequestContextUtils.getWebApplicationContext(request); -->
+    <servlet>
+        <servlet-name>login</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 可以自定义配置文件的名称，文件名称为springMVC.xml-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:/login-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <multipart-config>
+            <!-- 如果fileName带了绝对路径，那将以fileName所带路径为准把文件写入磁盘 -->
+            <!-- <location>/temp/fileUpload</location> -->
+            <max-file-size>2097152</max-file-size>
+            <max-request-size>4194304</max-request-size>
+            <!-- 数字类型，当文件大小超过指定的大小后将写入到硬盘上 -->
+            <file-size-threshold>0</file-size-threshold>
+        </multipart-config>
+
+    </servlet>
+    <!-- 框架会在web应用的 WEB-INF文件夹下寻找名为[servlet-name]-servlet.xml 的配置文件，生成文件中定义的bean -->
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <!-- 处理所有请求,REST风格，但是包括了静态资源 -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!-- *************使用druid连接池监管****************** -->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
