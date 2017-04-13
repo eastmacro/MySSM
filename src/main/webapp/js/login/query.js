@@ -2,7 +2,7 @@ $(document).ready(function(){
 	$("#input-id").fileinput({
 		
 		
-		uploadUrl : '/MyDemo/login/fileinputAjax',
+		uploadUrl : 'fileinputAjax',
 		uploadAsync : true,//true异步,false同步
 		maxFileCount : 5,
 		maxFileSize : 51200,
