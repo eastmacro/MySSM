@@ -52,11 +52,7 @@ public class LoginController {
             return new ModelAndView("login/login", "error", "账号或密码错误");
         } else {
             User user = service.getUserByEmail(emailAdress);
-            user.setLastIP(request.getRemoteAddr());
-            user.setLastVisitTime(new Date());
-            service.loginSuccess(user);
-
-            //rdAttr.addAttribute("user", user.getUsername());
+            service.loginSuccess(user,request.getRemoteAddr());
             rdAttr.addFlashAttribute("userName",user.getUsername());
             return new ModelAndView("redirect:/login/queryMethod");
         }

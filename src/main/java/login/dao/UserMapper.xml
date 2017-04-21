@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="login.dao.Mapper">
-    <insert id="insertUser" parameterMap="User">
-        insert INTO USER (username,emailAddress,password) VALUES (#{username },#{emailAddress },#{password })
+<mapper namespace="login.dao.UserMapper">
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="id" />
+        <result property="username" column="username"/>
+        <result property="emailAddress" column="emailAddress"/>
+        <result property="password" column="password"/>
+        <result property="credits" column="credits"/>
+        <result property="lastIp" column="lastIp"/>
+        <result property="lastVisitTime" column="lastVisitTime"/>
+    </resultMap>
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO USER (username,emailAddress,password,credits,lastIP,lastVisitTime) VALUES (#{username },#{emailAddress },#{password },#{credits },#{lastIp },#{lastVisitTime })
     </insert>
+    <update id="updateUser" parameterType="User">
+        UPDATE USER SET username=#{username },emailAddress=#{emailAddress },password=#{password },credits=#{credits },lastIP=#{lastIp },lastVisitTime=#{lastVisitTime } WHERE id=#{id}
+    </update>
     <select id="getUser" resultType="User" parameterType="int">
         SELECT * FROM USER WHERE id = #{id}
     </select>
+    <select id="getUserByEmail" parameterType="String" resultType="User" >
+        SELECT * FROM USER WHERE emailAddress = #{emailAddress}
+    </select>
+    <select id="getAllUser" resultMap="userResultMap" >
+        SELECT * FROM USER
+    </select>
+
+    <select id="getMatchCount" parameterType="map" resultType="int">
+          SELECT COUNT(*) FROM USER WHERE emailAddress = #{emailAddress} and password = #{password}
+    </select>
+
 </mapper>

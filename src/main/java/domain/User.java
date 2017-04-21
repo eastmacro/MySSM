@@ -14,7 +14,7 @@ public class User implements Serializable{
     private String password;
     private String gender;
     private int credits;
-    private String lastIP;
+    private String lastIp;
     private Date lastVisitTime;
 
 
@@ -57,11 +57,13 @@ public class User implements Serializable{
     public void setCredits(int credits) {
         this.credits = credits;
     }
-    public String getLastIP() {
-        return lastIP;
+
+    public String getLastIp() {
+        return lastIp;
     }
-    public void setLastIP(String lastIP) {
-        this.lastIP = lastIP;
+
+    public void setLastIp(String lastIp) {
+        this.lastIp = lastIp;
     }
 
     public Date getLastVisitTime() {
@@ -73,7 +75,7 @@ public class User implements Serializable{
     @Override
     public String toString() {
         return "User [id=" + id + ", username=" + username + ", password=" + password + ", credits=" + credits
-                + ", lastIP=" + lastIP + ", lastVisit=" + lastVisitTime + "]";
+                + ", lastIp=" + lastIp + ", lastVisit=" + lastVisitTime + "]";
     }
 
 

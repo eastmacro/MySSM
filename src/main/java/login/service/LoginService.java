@@ -1,8 +1,6 @@
 package login.service;
 
-import login.dao.LoginDao;
 import login.dao.UserMapper;
-import domain.LoginLog;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,34 +16,28 @@ public class LoginService {
 
 
     @Autowired
-    private LoginDao dao;
-
-    @Autowired
     private UserMapper userMapper;
 
     public boolean hasMatchUser(String emailAddress,String password) {
-        int match = dao.getMatchCount(emailAddress, password);
+        int match = userMapper.getMatchCount(emailAddress, password);
         return match > 0;
 
     }
 
     public User getUserByEmail(String emailAddress) {
-        return dao.getByUserEmail(emailAddress);
+        return userMapper.getUserByEmail(emailAddress);
     }
 
-    public void loginSuccess(User user) {
+    public void loginSuccess(User user,String lastIp) {
+        user.setLastIp(lastIp);
+        user.setLastVisitTime(new Date());
         user.setCredits(user.getCredits() + 5);
-        LoginLog loginLog = new LoginLog();
-        loginLog.setUserId(user.getId());
-        loginLog.setLoginDate(new Date());
-        loginLog.setIP(user.getLastIP());
-        dao.updateLoginInfo(user);
-        dao.insertLoginLog(loginLog);
+        userMapper.updateUser(user);
 
     }
 
     public List<User> queryAllUsers() {
-        return dao.getAllUsers();
+        return userMapper.getAllUser();
     }
 
     public User getUserById(int id) {
