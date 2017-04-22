@@ -11,6 +11,7 @@ import java.util.List;
 public interface UserMapper {
     void insertUser(User user);
     void updateUser(User user);
+    void updateUserPhoto(@Param("userPhoto") byte[] bytes,@Param("id")int id);
     User getUser(int id);
     User getUserByEmail(String emailAddress);
     List<User> getAllUser();

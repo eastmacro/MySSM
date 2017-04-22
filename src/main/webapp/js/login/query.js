@@ -17,7 +17,9 @@ $(document).ready(function(){
 	
 
   $(".edit").click(function(){
-	  alert("delete");
+	  var userId = $(this).attr("id");
+	 // window.location="/MyDemo/login/edit?id="+userId;
+	  window.location="edit?id="+userId;
   });
   
   $(".delete").click(function(){

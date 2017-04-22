@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,6 +14,13 @@
     <link href="<c:url value="/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
 
     <script src="<c:url value="/js/login/edit.js"/>" type="text/javascript"></script>
+
+    <link href="<c:url value="/bootstrap-fileinput/css/fileinput.css"/>" media="all" rel="stylesheet" type="text/css"/>
+    <script src="<c:url value="/bootstrap-fileinput/js/fileinput.js"/>"></script>
+    <script src="<c:url value="/bootstrap-fileinput/themes/fa/theme.js"/>"></script>
+    <script src="<c:url value="/bootstrap-fileinput/js/locales/zh.js"/>"></script>
+
+
 </head>
 <body>
 <div class="container-fluid">
@@ -21,6 +29,7 @@
 
             <h3>用户信息</h3>
             <form class="form-signin" action="<c:url value="/login/submitUser"/>" method="POST">
+                <input type="hidden" name="id" id="id" value="${user.id}">
                 <table class="table table-hover table-bordered">
                     <tr>
                         <td>姓名</td>
@@ -32,13 +41,17 @@
                     </tr>
                     <tr>
                         <td>积分</td>
-                        <td><input name="credits" type="credits" id="credits" class="form-control" placeholder="number "
+                        <td><input value="${user.credits}" name="credits" type="credits" id="credits" class="form-control" placeholder="number "
                                    required autofocus></td>
                     </tr>
                     <tr>
-                        <td>附件</td>
-                        <td></td>
+                        <td>头像</td>
+                        <td>
+                            <input id="input-id" type="file" multiple name="file"/>
+                        </td>
                     </tr>
+                    <button type="submit" class="btn btn-submit">提交</button>
+                    <button type="button" class="btn btn-back" id="back">返回</button>
                 </table>
             </form>
         </div>

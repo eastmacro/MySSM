@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -95,12 +96,15 @@ public class LoginController {
     @ResponseBody
     @RequestMapping(value="/fileinputAjax")
     public Object uploadFileAjax(
-            @RequestPart("file") MultipartFile file) {
+            @RequestPart("file") MultipartFile file,
+            @RequestParam("id") int id) {
 
         Map<String, Object> mm = new HashMap<String, Object>();
+
         try {
-            file.transferTo(new File("D://"+file.getOriginalFilename()));
+            service.updateUserPhoto(file,id);
             mm.put("fileSize",String.valueOf(file.getSize()));
+            //throw new IOException();
         }  catch (IOException e) {
             e.printStackTrace();
             mm.put("error", "文件上传失败！");//此时fileuploaded事件和initialPreview都不会执行
@@ -112,5 +116,12 @@ public class LoginController {
     public ModelAndView editUser(@RequestParam("id")int id){
         User user = service.getUserById(id);
         return new ModelAndView("/login/edit","user",user );
+    }
+
+    @RequestMapping(value = "/submitUser", method = RequestMethod.POST)
+    public String submitUser(User user){
+       service.updateUser(user);
+
+       return "redirect:/login/edit?id="+user.getId();
     }
 }

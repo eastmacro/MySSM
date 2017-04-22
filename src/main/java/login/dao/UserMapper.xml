@@ -17,6 +17,9 @@
     <update id="updateUser" parameterType="User">
         UPDATE USER SET username=#{username },emailAddress=#{emailAddress },password=#{password },credits=#{credits },lastIP=#{lastIp },lastVisitTime=#{lastVisitTime } WHERE id=#{id}
     </update>
+    <update id="updateUserPhoto" parameterType="map">
+        UPDATE USER SET USER_PHOTO = #{userPhoto} WHERE id = #{id}
+    </update>
     <select id="getUser" resultType="User" parameterType="int">
         SELECT * FROM USER WHERE id = #{id}
     </select>
@@ -26,7 +29,6 @@
     <select id="getAllUser" resultMap="userResultMap" >
         SELECT * FROM USER
     </select>
-
     <select id="getMatchCount" parameterType="map" resultType="int">
           SELECT COUNT(*) FROM USER WHERE emailAddress = #{emailAddress} and password = #{password}
     </select>
