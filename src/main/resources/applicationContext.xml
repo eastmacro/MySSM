@@ -17,7 +17,7 @@
 
     <!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能  -->
 
-    <context:component-scan base-package="login.*">
+    <context:component-scan base-package="backStageManage.*">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -88,7 +88,7 @@
     <!--class和xml在一个目录且同名-->
     <!--  p:sqlSessionFactory-ref 会导致PropertyPlaceholderConfigurer起作用之前，一些类提前初始化。改用按NAME注入-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
-          p:basePackage="login.dao"
+          p:basePackage="backStageManage.dao"
           p:sqlSessionFactoryBeanName="sqlSessionFactoryBean"/>
 
 
@@ -112,7 +112,7 @@
 
     <!-- AOP配置，事务增强，service包下所有Bean的所有方法拥有事务 -->
     <aop:config proxy-target-class="true">
-        <aop:pointcut expression="execution(* login.service..*(..))"
+        <aop:pointcut expression="execution(* backStageManage.service..*(..))"
                       id="serviceMethod" />
         <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
     </aop:config>

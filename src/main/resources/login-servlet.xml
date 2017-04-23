@@ -16,7 +16,7 @@
 
 
     <!-- *******************扫描注解，放在application中无效***********************-->
-    <context:component-scan base-package="login.*" >
+    <context:component-scan base-package="backStageManage.*" >
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
@@ -40,7 +40,7 @@
     <!-- 视图解释类ViewResolver -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:viewClass="org.springframework.web.servlet.view.JstlView"
-          p:prefix="/WEB-INF/jsp/"
+          p:prefix="/WEB-INF/jsp/backStageManage"
           p:suffix=".jsp">
 
     </bean>

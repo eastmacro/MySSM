@@ -22,7 +22,7 @@ $(document).ready(function(){
 
 
     $("#back").click(function (e) {
-        window.location="queryMethod";
+        window.location="userQueryMethod";
     });
 
 

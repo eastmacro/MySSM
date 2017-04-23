@@ -1,4 +1,4 @@
-package login.dao;
+package backStageManage.dao;
 
 import domain.User;
 import org.apache.ibatis.annotations.Param;

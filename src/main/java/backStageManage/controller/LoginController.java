@@ -1,7 +1,7 @@
-package login.controller;
+package backStageManage.controller;
 
 import domain.User;
-import login.service.LoginService;
+import backStageManage.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,8 +30,9 @@ public class LoginController {
 
     @RequestMapping(value = "/index")
     public String loginPage() {
-        return "login/login";
+        return "user/userQueryMethod";
     }
+
 
     @RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
     public ModelAndView loginCheck(
@@ -55,23 +54,11 @@ public class LoginController {
             User user = service.getUserByEmail(emailAdress);
             service.loginSuccess(user,request.getRemoteAddr());
             rdAttr.addFlashAttribute("userName",user.getUsername());
-            return new ModelAndView("redirect:/login/queryMethod");
+            return new ModelAndView("redirect:/user/userQueryMethod");
         }
     }
 
-    /**
-     * 处理form表单提交的文件
-     * @param userName
-     * @return
-     */
-    @RequestMapping(value="/queryMethod")
-    public ModelAndView queryUser(@ModelAttribute("userName") String userName){
-        Map<String, Object> map = new HashMap<String, Object>();
-        List<User> users = service.queryAllUsers();
-        map.put("userList", users);
-        map.put("loginUser", userName);
-        return new ModelAndView("/login/query", map);
-    }
+
 
     @RequestMapping(value="/fileinput")
     public String uploadFile(
@@ -82,46 +69,9 @@ public class LoginController {
             System.out.println(files[i].getOriginalFilename());
 
         }
-        return "redirect:/login/queryMethod";
+        return "redirect:/backStageManage/queryMethod";
     }
 
-    /**
-     * 处理ajax异步文件上传，异步每次上传一个
-     *
-     * @param file
-     * @return
-     * @throws IllegalStateException
-     * @throws IOException
-     */
-    @ResponseBody
-    @RequestMapping(value="/fileinputAjax")
-    public Object uploadFileAjax(
-            @RequestPart("file") MultipartFile file,
-            @RequestParam("id") int id) {
 
-        Map<String, Object> mm = new HashMap<String, Object>();
 
-        try {
-            service.updateUserPhoto(file,id);
-            mm.put("fileSize",String.valueOf(file.getSize()));
-            //throw new IOException();
-        }  catch (IOException e) {
-            e.printStackTrace();
-            mm.put("error", "文件上传失败！");//此时fileuploaded事件和initialPreview都不会执行
-        }
-        mm.put("initialPreview",new String[]{"文件上传成功"});
-        return mm;
-    }
-    @RequestMapping(value="/edit")
-    public ModelAndView editUser(@RequestParam("id")int id){
-        User user = service.getUserById(id);
-        return new ModelAndView("/login/edit","user",user );
-    }
-
-    @RequestMapping(value = "/submitUser", method = RequestMethod.POST)
-    public String submitUser(User user){
-       service.updateUser(user);
-
-       return "redirect:/login/edit?id="+user.getId();
-    }
 }

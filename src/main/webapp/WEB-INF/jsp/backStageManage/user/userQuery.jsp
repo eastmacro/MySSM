@@ -27,18 +27,19 @@
     <script src="<c:url value="/bootstrap-fileinput/js/locales/zh.js"/>"></script>
 
 
-    <script src="<c:url value="/js/login/query.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/js/backStageManage/user/userQuery.js"/>" type="text/javascript"></script>
 
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/common/bar.jsp"></jsp:include>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
             <c:if test="${!empty loginUser }">
                 <label><em><c:out value="${loginUser } welcome!"/></em></label>
             </c:if>
-            <%-- <form enctype="multipart/form-data" class="form-signin" action="<c:url value="/login/fileinput"/>" method="POST"> --%>
+            <%-- <form enctype="multipart/form-data" class="form-signin" action="<c:url value="/backStageManage/fileinput"/>" method="POST"> --%>
             <%--<fieldset>
                 <legend>表单项</legend>
                 <label>表签名</label>
@@ -93,7 +94,7 @@
                                 ${item.credits }
                         </td>
                         <td>
-                            <button class="btn edit" id="${item.id}" type="button" href="/login/edit">修改</button>
+                            <button class="btn edit" id="${item.id}" type="button" href="/backStageManage/edit">修改</button>
                             <button class="btn delete" type="button" param="${item.id }">删除</button>
                         </td>
                     </tr>

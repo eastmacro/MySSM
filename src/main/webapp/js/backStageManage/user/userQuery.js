@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#input-id").fileinput({
+	/*$("#input-id").fileinput({
 		
 		
 		uploadUrl : 'fileinputAjax',
@@ -12,13 +12,13 @@ $(document).ready(function(){
 		msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！"
 	}).on("fileuploaded", function(event, data, previewId, index) {
 		alert("文件大小为"+data.response.fileSize);
-	}).on("");
+	}).on("");*/
 	
 	
 
   $(".edit").click(function(){
 	  var userId = $(this).attr("id");
-	 // window.location="/MyDemo/login/edit?id="+userId;
+	 // window.location="/MyDemo/backStageManage/edit?id="+userId;
 	  window.location="edit?id="+userId;
   });
   

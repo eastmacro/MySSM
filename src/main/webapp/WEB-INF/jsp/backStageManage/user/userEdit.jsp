@@ -13,7 +13,7 @@
 
     <link href="<c:url value="/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
 
-    <script src="<c:url value="/js/login/edit.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/js/backStageManage/user/userEdit.js"/>" type="text/javascript"></script>
 
     <link href="<c:url value="/bootstrap-fileinput/css/fileinput.css"/>" media="all" rel="stylesheet" type="text/css"/>
     <script src="<c:url value="/bootstrap-fileinput/js/fileinput.js"/>"></script>
@@ -28,7 +28,7 @@
         <div class="span12">
 
             <h3>用户信息</h3>
-            <form class="form-signin" action="<c:url value="/login/submitUser"/>" method="POST">
+            <form class="form-signin" action="<c:url value="/user/submitUser"/>" method="POST">
                 <input type="hidden" name="id" id="id" value="${user.id}">
                 <table class="table table-hover table-bordered">
                     <tr>

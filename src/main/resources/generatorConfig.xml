@@ -23,12 +23,12 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="login.dao"
+        <sqlMapGenerator targetPackage="backStageManage.dao"
                          targetProject="F:\workspace3\mydemo\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator targetPackage="login.dao"
+        <javaClientGenerator targetPackage="backStageManage.dao"
                              targetProject="F:\workspace3\mydemo\src\main\java"  type="XMLMAPPER" >
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>

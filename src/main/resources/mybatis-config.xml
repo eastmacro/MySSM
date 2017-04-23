@@ -11,6 +11,6 @@
     </typeAliases>
    <!--
    <mappers>
-          <mapper resource="login/dao/UserMapper.xml"></mapper>
+          <mapper resource="backStageManage/dao/UserMapper.xml"></mapper>
       </mappers>-->
 </configuration>
