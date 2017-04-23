@@ -1,22 +1,32 @@
 $(document).ready(function(){
-	/*$("#input-id").fileinput({
-		
-		
-		uploadUrl : 'fileinputAjax',
-		uploadAsync : true,//true异步,false同步
-		maxFileCount : 5,
-		maxFileSize : 51200,
-		//maxFilePreviewSize : 102400,//预览的最大文件大小，超过不预览
-		//allowedFileExtensions : [ 'jpg', 'png', 'xlsx','txt' ],// 接收的文件后缀
-		language : 'zh',
-		msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！"
-	}).on("fileuploaded", function(event, data, previewId, index) {
-		alert("文件大小为"+data.response.fileSize);
-	}).on("");*/
-	
-	
 
-  $(".edit").click(function(){
+
+
+    var table = $('#myTable').DataTable({responsive: true});
+    //给行绑定选中事件
+    $('#myTable').on('click','tr',function() {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+    //给按钮绑定点击事件
+    $("#table_id_example_button").click(function(){
+        var column1 = table.row('.selected').data().column1;
+        var column2 = table.row('.selected').data().column2;
+        alert("第一列内容："+column1 + "；第二列内容： " + column2);
+    });
+
+
+
+
+
+
+
+    $(".edit").click(function(){
 	  var userId = $(this).attr("id");
 	 // window.location="/MyDemo/backStageManage/edit?id="+userId;
 	  window.location="edit?id="+userId;
@@ -25,4 +35,6 @@ $(document).ready(function(){
   $(".delete").click(function(){
 	  alert("delete");
   });
+
+
 });

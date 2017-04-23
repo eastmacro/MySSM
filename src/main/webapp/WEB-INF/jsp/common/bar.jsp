@@ -23,7 +23,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="<c:url value="/user/userQueryMethod"/>">用户管理</a></li>
-                        <li><a href="<c:url value="/role/roleQuery"/>">角色管理</a></li>
+                        <li><a href="<c:url value="/role/roleQueryMethod"/>">角色管理</a></li>
                         <li><a href="#">Jasper Report</a></li>
                         <li class="divider"></li>
                         <li><a href="#">分离的链接</a></li>

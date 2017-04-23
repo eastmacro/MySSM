@@ -23,6 +23,7 @@
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/common/bar.jsp"/>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">

@@ -38,7 +38,7 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>-->
 
-        <table tableName="USER_ROLE_RE" domainObjectName="UserRoleRe"
+        <table tableName="MENU" domainObjectName="Menu"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

@@ -24,11 +24,6 @@ public class UserController {
     private UserService service;
 
 
-    /**
-     * 处理form表单提交的文件
-     * @param userName
-     * @return
-     */
     @RequestMapping(value= "/userQueryMethod")
     public ModelAndView queryUser(@ModelAttribute("userName") String userName){
         Map<String, Object> map = new HashMap<String, Object>();

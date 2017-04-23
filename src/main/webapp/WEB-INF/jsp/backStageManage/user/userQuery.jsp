@@ -10,29 +10,19 @@
     <title>用户列表</title>
 
     <script src="<c:url value="/jquery/jquery-3.2.0.js"/>" type="text/javascript"></script>
+    <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <link href="<c:url value="/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
-    <link href="<c:url value="/bootstrap-fileinput/css/fileinput.css"/>" media="all" rel="stylesheet" type="text/css"/>
 
-    <!-- the main fileinput plugin file -->
-    <script src="<c:url value="/bootstrap-fileinput/js/fileinput.js"/>"></script>
-    <!-- bootstrap.js below is needed if you wish to zoom and view file content
-         in a larger detailed modal dialog -->
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- optionally if you need a theme like font awesome theme you can include
-        it as mentioned below -->
-    <script src="<c:url value="/bootstrap-fileinput/themes/fa/theme.js"/>"></script>
-    <!-- optionally if you need translation for your language then include
-        locale file as mentioned below -->
-    <script src="<c:url value="/bootstrap-fileinput/js/locales/zh.js"/>"></script>
-
 
     <script src="<c:url value="/js/backStageManage/user/userQuery.js"/>" type="text/javascript"></script>
 
-
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/jsp/common/bar.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/common/bar.jsp"/>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
@@ -49,7 +39,8 @@
             <h3>
                 用户列表
             </h3>
-            <table class="table table-hover table-bordered">
+            <button id="table_id_example_button">获取选中的行</button>
+            <table id="myTable" class="table table-hover table-bordered display">
                 <thead>
                 <tr>
                     <th>

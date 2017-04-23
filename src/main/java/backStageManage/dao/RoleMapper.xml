@@ -68,4 +68,7 @@
       ROLE_NAME_CH = #{roleNameCh,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT * FROM ROLE
+  </select>
 </mapper>
