@@ -1,6 +1,6 @@
-package backStageManage.controller;
+package manage.controller;
 
-import backStageManage.service.UserService;
+import manage.service.UserService;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,7 +67,8 @@ public class UserController {
             //throw new IOException();
         }  catch (IOException e) {
             e.printStackTrace();
-            mm.put("error", "文件上传失败！");//此时fileuploaded事件和initialPreview都不会执行
+            //此时fileuploaded事件和initialPreview都不会执行
+            mm.put("error", "文件上传失败！");
         }
         mm.put("initialPreview",new String[]{"文件上传成功"});
         return mm;

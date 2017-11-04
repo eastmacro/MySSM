@@ -17,7 +17,7 @@
 
     <!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能  -->
 
-    <context:component-scan base-package="backStageManage.*">
+    <context:component-scan base-package="manage.*">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -28,9 +28,13 @@
 
 
     <!-- *********************导入jdbc配置文件********************* -->
-    <bean id="propertyConfigurer"
+    <!--<bean id="propertyConfiguer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-          p:location="classpath:jdbc.properties" p:fileEncoding="UTF-8" />
+          p:location="classpath:jdbc.properties" p:fileEncoding="UTF-8" />-->
+
+    <!-- 与上面二选一 -->
+    <context:property-placeholder location="classpath:jdbc.properties" file-encoding="UTF-8" />
+
 
     <!-- *********************连接池源********************* -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
@@ -88,7 +92,7 @@
     <!--class和xml在一个目录且同名-->
     <!--  p:sqlSessionFactory-ref 会导致PropertyPlaceholderConfigurer起作用之前，一些类提前初始化。改用按NAME注入-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
-          p:basePackage="backStageManage.dao"
+          p:basePackage="manage.dao"
           p:sqlSessionFactoryBeanName="sqlSessionFactoryBean"/>
 
 
@@ -99,21 +103,35 @@
           p:dataSource-ref="dataSource" />
 
 
-    <!-- 配置事务管理器 -->
+    <!-- 1.配置事务管理器 -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
           p:dataSource-ref="dataSource"/>
 
+    <!-- 2.使用切点表达式语言定义目标方法
+           AOP配置，事务增强，service包下所有Bean的所有方法拥有事务 -->
+    <aop:config proxy-target-class="true">
+        <!--通过aop定义事务增强切面-->
+        <aop:pointcut id="serviceMethod" expression="execution(* manage.service..*(..))"
+        />
+        <!--引用事务增强-->
+        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
+    </aop:config>
+
+    <!-- 3.事务增强 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="*" />
+            <!-- name与事务属性关联的方法名-->
+            <!-- propagation 传播行为-->
+            <!-- isolated 隔离级别-->
+            <!-- timeout 事务超时时间 -1是由底层事务系统决定-->
+            <!-- readOnly-->
+            <!-- rollback-for和no-rollback-for 什么异常时候回滚、接着提交-->
+            <tx:method name="add*" rollback-for="Exception"/>
+            <tx:method name="get*" read-only="false"/>
+            <tx:method name="update" />
         </tx:attributes>
     </tx:advice>
 
-    <!-- AOP配置，事务增强，service包下所有Bean的所有方法拥有事务 -->
-    <aop:config proxy-target-class="true">
-        <aop:pointcut expression="execution(* backStageManage.service..*(..))"
-                      id="serviceMethod" />
-        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
-    </aop:config>
+
 </beans>

@@ -1,7 +1,7 @@
-package backStageManage.controller;
+package manage.controller;
 
 import domain.User;
-import backStageManage.service.LoginService;
+import manage.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Rujiao Xiong on 2017/4/8.
@@ -69,7 +66,7 @@ public class LoginController {
             System.out.println(files[i].getOriginalFilename());
 
         }
-        return "redirect:/backStageManage/queryMethod";
+        return "redirect:/manage/queryMethod";
     }
 
 

@@ -1,0 +1,1 @@
+INSERT INTO myssm.user_role_re (userId, roleId) VALUES (1, 1);

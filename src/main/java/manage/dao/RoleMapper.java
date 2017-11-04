@@ -1,4 +1,4 @@
-package backStageManage.dao;
+package manage.dao;
 
 import domain.Role;
 

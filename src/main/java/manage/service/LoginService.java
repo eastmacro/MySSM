@@ -1,14 +1,11 @@
-package backStageManage.service;
+package manage.service;
 
-import backStageManage.dao.UserMapper;
+import manage.dao.UserMapper;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Rujiao Xiong on 2017/4/7.

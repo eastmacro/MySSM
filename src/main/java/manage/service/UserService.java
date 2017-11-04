@@ -1,6 +1,6 @@
-package backStageManage.service;
+package manage.service;
 
-import backStageManage.dao.UserMapper;
+import manage.dao.UserMapper;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

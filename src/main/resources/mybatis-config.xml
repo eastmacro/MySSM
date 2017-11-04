@@ -2,15 +2,8 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <!--      <settings>
-           <setting name="mapUnderscoreToCamelCase" value="true" />
-       </settings>
-   -->
     <typeAliases>
         <typeAlias type="domain.User" alias="User"></typeAlias>
     </typeAliases>
-   <!--
-   <mappers>
-          <mapper resource="backStageManage/dao/UserMapper.xml"></mapper>
-      </mappers>-->
+
 </configuration>

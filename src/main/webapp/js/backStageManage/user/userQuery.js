@@ -28,7 +28,7 @@ $(document).ready(function(){
 
     $(".edit").click(function(){
 	  var userId = $(this).attr("id");
-	 // window.location="/MyDemo/backStageManage/edit?id="+userId;
+	 // window.location="/MyDemo/manage/edit?id="+userId;
 	  window.location="edit?id="+userId;
   });
   

@@ -1,6 +1,6 @@
-package backStageManage;
+package manage;
 
-import backStageManage.dao.UserMapper;
+import manage.dao.UserMapper;
 import domain.User;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,0 +1,1 @@
+INSERT INTO myssm.role (roleNameEn, roleNameCh) VALUES ('manager', '管理员');

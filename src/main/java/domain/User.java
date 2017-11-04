@@ -12,18 +12,12 @@ public class User implements Serializable{
     private String username;
     private String emailAddress;
     private String password;
-    private String gender;
+
     private int credits;
     private String lastIp;
     private Date lastVisitTime;
 
 
-    public String getGender() {
-        return gender;
-    }
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
     public String getUsername() {
         return username;
     }
