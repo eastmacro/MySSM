@@ -1,4 +1,4 @@
-package manage;
+package java.login;
 
 import manage.dao.UserMapper;
 import domain.User;
