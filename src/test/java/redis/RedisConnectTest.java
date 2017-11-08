@@ -8,10 +8,20 @@ import redis.clients.jedis.Jedis;
  * @Author xiong
  */
 public class RedisConnectTest {
-  @Test
-   public void testConnection(){
-      Jedis jedis = new Jedis("127.0.0.1",6379);
-      System.out.println(jedis.ping());
 
+
+    private Jedis jedis;
+
+
+    @Before
+    public void initJedis(){
+        jedis = new Jedis("192.168.0.113",6379);
+    }
+
+
+
+  @Test
+   public void testConnection() {
+      assert "PONG".equals(jedis.ping());
   }
 }
