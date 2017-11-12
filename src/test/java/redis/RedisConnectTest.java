@@ -3,6 +3,8 @@ package redis;
 import org.junit.Before;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * @Author xiong
@@ -10,14 +12,14 @@ import redis.clients.jedis.Jedis;
 public class RedisConnectTest {
 
 
-    private Jedis jedis;
-
+    Jedis jedis;
+    JedisPool pool;
 
     @Before
-    public void initJedis(){
-        jedis = new Jedis("192.168.0.113",6379);
+    public void setUp() {
+        pool = new JedisPool(new JedisPoolConfig(), "92.168.0.113");
+        jedis = pool.getResource();
     }
-
 
 
   @Test
