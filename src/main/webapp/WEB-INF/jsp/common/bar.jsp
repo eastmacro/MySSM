@@ -16,19 +16,19 @@
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">菜单一</a></li>
-                <li><a href="#">菜单二</a></li>
+                <%--<li class="active"><a href="#">菜单一</a></li>
+                <li><a href="#">菜单二</a></li>--%>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">后台管理<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="<c:url value="/user/userQueryMethod"/>">用户管理</a></li>
                         <li><a href="<c:url value="/role/roleQueryMethod"/>">角色管理</a></li>
-                        <li><a href="#">Jasper Report</a></li>
+                       <%-- <li><a href="#">Jasper Report</a></li>
                         <li class="divider"></li>
                         <li><a href="#">分离的链接</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">另一个分离的链接</a></li>
+                        <li><a href="#">另一个分离的链接</a></li>--%>
                     </ul>
                 </li>
             </ul>

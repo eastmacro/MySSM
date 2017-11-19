@@ -1,1 +1,1 @@
-INSERT INTO myssm.user (username, emailAddress, password, create_time, credits, lastIp, lastVisitTime, photo) VALUES ('xioruu', 'xrj@163.com', '123456', '2017-11-01 14:42:34', 50, '127.0.0.1', '2017-11-01 14:42:48', null);
+INSERT INTO myssm.user (username, emailAddress, password, createtime, credits, lastIp, lastVisitTime) VALUES ('xioruu', 'xrj@163.com', '123456', '2017-11-01 14:42:34', 50, '127.0.0.1', '2017-11-01 14:42:48');

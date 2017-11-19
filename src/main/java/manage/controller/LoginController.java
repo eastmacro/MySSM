@@ -46,7 +46,7 @@ public class LoginController {
 
         boolean isValidUser = service.hasMatchUser(emailAdress, password);
         if (!isValidUser) {
-            return new ModelAndView("login/login", "error", "账号或密码错误");
+            return new ModelAndView("/manage/login/login", "error", "账号或密码错误");
         } else {
             User user = service.getUserByEmail(emailAdress);
             service.loginSuccess(user,request.getRemoteAddr());

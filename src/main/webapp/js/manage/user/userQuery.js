@@ -21,19 +21,14 @@ $(document).ready(function(){
     });
 
 
-
-
-
-
-
     $(".edit").click(function(){
 	  var userId = $(this).attr("id");
-	 // window.location="/MyDemo/manage/edit?id="+userId;
-	  window.location="edit?id="+userId;
+	  window.location="edit/"+userId;
   });
   
   $(".delete").click(function(){
-	  alert("delete");
+      var userId = $(this).attr("id");
+      window.location="delete/"+userId;
   });
 
 

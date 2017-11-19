@@ -13,7 +13,7 @@
 
     <link href="<c:url value="/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
 
-    <script src="<c:url value="/js/backStageManage/user/userEdit.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/js/manage/user/userEdit.js"/>" type="text/javascript"></script>
 
     <link href="<c:url value="/bootstrap-fileinput/css/fileinput.css"/>" media="all" rel="stylesheet" type="text/css"/>
     <script src="<c:url value="/bootstrap-fileinput/js/fileinput.js"/>"></script>

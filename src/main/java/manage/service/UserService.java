@@ -1,7 +1,7 @@
 package manage.service;
 
-import manage.dao.UserMapper;
 import domain.User;
+import manage.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,7 +37,9 @@ public class UserService {
 
     public void updateUserPhoto(MultipartFile file, int id) throws IOException {
         userMapper.updateUserPhoto(file.getBytes(),id);
+    }
 
-
+    public void deleteByPrimaryKey(int id){
+        userMapper.deleteByPrimaryKey(id);
     }
 }

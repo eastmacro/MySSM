@@ -17,7 +17,7 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 
-    <script src="<c:url value="/js/backStageManage/user/userQuery.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/js/manage/user/userQuery.js"/>" type="text/javascript"></script>
 
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
 </head>
@@ -85,8 +85,8 @@
                                 ${item.credits }
                         </td>
                         <td>
-                            <button class="btn edit" id="${item.id}" type="button" href="/manage/edit">修改</button>
-                            <button class="btn delete" type="button" param="${item.id }">删除</button>
+                            <button class="btn edit" type="button" id="${item.id}"  href="/manage/edit">修改</button>
+                            <button class="btn delete" type="button" id="${item.id }" >删除</button>
                         </td>
                     </tr>
                 </c:forEach>

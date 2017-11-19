@@ -1,7 +1,8 @@
 package manage.controller;
 
-import manage.service.UserService;
 import domain.User;
+import manage.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,32 +21,56 @@ import java.util.Map;
 @RequestMapping(value = "/user")
 public class UserController {
 
+    Logger logger = Logger.getLogger(UserController.class);
+
     @Autowired
     private UserService service;
 
 
+    /**
+     * 列出所有用户
+     * @param userName 用户名
+     * @return 用户列表页面
+     */
     @RequestMapping(value= "/userQueryMethod")
     public ModelAndView queryUser(@ModelAttribute("userName") String userName){
         Map<String, Object> map = new HashMap<String, Object>();
         List<User> users = service.queryAllUsers();
         map.put("userList", users);
         map.put("loginUser", userName);
-        return new ModelAndView("/user/userQuery", map);
-    }
-
-    @RequestMapping(value="/edit")
-    public ModelAndView editUser(@RequestParam("id")int id){
-        User user = service.getUserById(id);
-        return new ModelAndView("/user/userEdit","user",user );
-    }
-
-    @RequestMapping(value = "/submitUser", method = RequestMethod.POST)
-    public String submitUser(User user){
-        service.updateUser(user);
-        return "redirect:/user/edit?id="+user.getId();
+        return new ModelAndView("/manage/user/userQuery", map);
     }
 
     /**
+     * 编辑用户
+     * @param id 用户id
+     * @return 编辑用户页面
+     */
+    @RequestMapping(value="/edit/{id}")
+    public ModelAndView editUser(@PathVariable("id")int id){
+        User user = service.getUserById(id);
+        return new ModelAndView("/manage/user/userEdit","user",user );
+    }
+
+    /**
+     * 提交用户信息
+     * @param user 用户Modlel
+     * @return 跳转到用户列表
+     */
+    @RequestMapping(value = "/submitUser", method = RequestMethod.POST)
+    public String submitUser(User user){
+        service.updateUser(user);
+        return "redirect:/user/userQueryMethod/";
+    }
+
+    @RequestMapping(value = "/delete/{id}")
+    public String deleteUser(@PathVariable("id")int userId){
+        service.deleteByPrimaryKey(userId);
+        return "redirect:/user/userQueryMethod/";
+    }
+
+    /**
+     * 上传用户头像
      * 处理ajax异步文件上传，异步每次上传一个
      *
      * @param file
@@ -59,6 +84,7 @@ public class UserController {
             @RequestPart("file") MultipartFile file,
             @RequestParam("id") int id) {
 
+        logger.debug("调用的文件上传Method");
         Map<String, Object> mm = new HashMap<String, Object>();
 
         try {

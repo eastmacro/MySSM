@@ -1,44 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd ">
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
+
+    <!-- 数据库驱动 -->
     <classPathEntry
-            location="C:\Users\Rujiao Xiong\.m2\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/>
+            location="C:\Users\xiong\.m2\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/>
+
+    <!-- -->
     <context id="my" targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressDate" value="false"/>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
+
+        <!-- 数据库账号密码-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/MyDemo"
+                        connectionURL="jdbc:mysql://localhost:3306/myssm"
                         userId="root"
                         password="123456"/>
 
+        <!-- Model存放位置-->
         <javaModelGenerator targetPackage="domain"
-                            targetProject="F:\workspace3\mydemo\src\main\java">
+                            targetProject="C:\Users\xiong\IdeaProjects\MySSMDemo\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
+        <!-- xml文件存放位置-->
         <sqlMapGenerator targetPackage="manage.dao"
-                         targetProject="F:\workspace3\mydemo\src\main\java">
+                         targetProject="C:\Users\xiong\IdeaProjects\MySSMDemo\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
+        <!-- Dao类存放位置-->
         <javaClientGenerator targetPackage="manage.dao"
-                             targetProject="F:\workspace3\mydemo\src\main\java"  type="XMLMAPPER" >
+                             targetProject="C:\Users\xiong\IdeaProjects\MySSMDemo\src\main\java"  type="XMLMAPPER" >
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!--<table tableName="T_FEE_AGTBILL" domainObjectName="FeeAgentBill"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"/>-->
-
-        <table tableName="MENU" domainObjectName="Menu"
+        <!--table tableName  domainObjectName
+               enableCountByExample
+               enableUpdateByExample
+               enableDeleteByExample
+               enableSelectByExample
+               selectByExampleQueryId-->
+        <table tableName="USER" domainObjectName="User"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

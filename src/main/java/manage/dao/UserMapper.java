@@ -16,6 +16,6 @@ public interface UserMapper {
     User getUserByEmail(String emailAddress);
     List<User> getAllUser();
     int getMatchCount(@Param("emailAddress") String emailAddress,@Param("password") String password);
-
+    int deleteByPrimaryKey(Integer id);
 
 }
