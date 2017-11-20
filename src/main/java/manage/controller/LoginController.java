@@ -2,6 +2,13 @@ package manage.controller;
 
 import domain.User;
 import manage.service.LoginService;
+import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +28,8 @@ import java.io.IOException;
 @RequestMapping(value = "/login")
 public class LoginController {
 
+    Logger log = Logger.getLogger(LoginController.class);
+
 
     @Autowired
     private LoginService service;
@@ -30,6 +39,11 @@ public class LoginController {
         return "user/userQueryMethod";
     }
 
+
+    @RequestMapping(value = "login")
+    public String login() {
+        return "/manage/login/login";
+    }
 
     @RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
     public ModelAndView loginCheck(
@@ -43,32 +57,46 @@ public class LoginController {
             RedirectAttributes rdAttr,
             User command) {
 
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(emailAdress, password);
+        String msg;
+        try {
+            subject.login(token);
 
-        boolean isValidUser = service.hasMatchUser(emailAdress, password);
-        if (!isValidUser) {
-            return new ModelAndView("/manage/login/login", "error", "账号或密码错误");
-        } else {
-            User user = service.getUserByEmail(emailAdress);
-            service.loginSuccess(user,request.getRemoteAddr());
-            rdAttr.addFlashAttribute("userName",user.getUsername());
             return new ModelAndView("redirect:/user/userQueryMethod");
+        } catch (UnknownAccountException e) {
+            msg = "账号不存在";
+        } catch (IncorrectCredentialsException ice) {
+            msg = "账号或密码错误";
+        } catch (LockedAccountException lae) {
+            msg = "账号已经锁定";
+        } catch (Exception e) {
+            msg = "账号或密码错误";
         }
+        return new ModelAndView("/manage/login/login", "error", msg);
     }
 
 
+    @RequestMapping("/logout")
+    public String logout() {
+        Subject subject = SecurityUtils.getSubject();
+        if (subject.isAuthenticated()) {
+            subject.logout(); // session 会销毁，在SessionListener监听session销毁，清理权限缓存
+        }
+        return "/manage/login/login";
+    }
 
-    @RequestMapping(value="/fileinput")
+    @RequestMapping(value = "/fileinput")
     public String uploadFile(
             @RequestPart("file") MultipartFile[] files) throws IllegalStateException, IOException {
         for (int i = 0; i < files.length; i++) {
 
-            files[i].transferTo(new File("D://"+files[i].getOriginalFilename()));
+            files[i].transferTo(new File("D://" + files[i].getOriginalFilename()));
             System.out.println(files[i].getOriginalFilename());
 
         }
         return "redirect:/manage/queryMethod";
     }
-
 
 
 }

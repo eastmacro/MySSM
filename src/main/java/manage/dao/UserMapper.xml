@@ -11,6 +11,7 @@
         <result property="credits" column="credits"/>
         <result property="lastIp" column="lastIp"/>
         <result property="lastVisitTime" column="lastVisitTime"/>
+        <result property="photo" column="photo"/>
     </resultMap>
     <insert id="insertUser" parameterType="User">
         INSERT INTO USER (username,emailAddress,password,createTime,credits,lastIP,lastVisitTime) VALUES (#{username },#{emailAddress },#{password },#{createTime},#{credits },#{lastIp },#{lastVisitTime })
@@ -19,7 +20,7 @@
         UPDATE USER SET username=#{username },emailAddress=#{emailAddress },password=#{password },createTime =#{createTime} ,credits=#{credits },lastIP=#{lastIp },lastVisitTime=#{lastVisitTime } WHERE id=#{id}
     </update>
     <update id="updateUserPhoto" parameterType="map">
-        UPDATE USER SET USER_PHOTO = #{userPhoto} WHERE id = #{id}
+        UPDATE USER SET photo = #{userPhoto} WHERE id = #{id}
     </update>
     <select id="getUser" resultType="User" parameterType="int">
         SELECT * FROM USER WHERE id = #{id}

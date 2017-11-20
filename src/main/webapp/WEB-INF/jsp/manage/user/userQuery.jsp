@@ -40,6 +40,7 @@
                 用户列表
             </h3>
             <button id="table_id_example_button">获取选中的行</button>
+            <button id="addUser" >添加用户</button>
             <table id="myTable" class="table table-hover table-bordered display">
                 <thead>
                 <tr>

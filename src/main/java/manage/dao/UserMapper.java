@@ -10,12 +10,19 @@ import java.util.List;
  */
 public interface UserMapper {
     void insertUser(User user);
+
     void updateUser(User user);
-    void updateUserPhoto(@Param("userPhoto") byte[] bytes,@Param("id")int id);
+
+    void updateUserPhoto(@Param("userPhoto") int photoId, @Param("id") int userId);
+
     User getUser(int id);
+
     User getUserByEmail(String emailAddress);
+
     List<User> getAllUser();
-    int getMatchCount(@Param("emailAddress") String emailAddress,@Param("password") String password);
+
+    int getMatchCount(@Param("emailAddress") String emailAddress, @Param("password") String password);
+
     int deleteByPrimaryKey(Integer id);
 
 }

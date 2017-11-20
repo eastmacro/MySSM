@@ -48,7 +48,7 @@
                enableDeleteByExample
                enableSelectByExample
                selectByExampleQueryId-->
-        <table tableName="USER" domainObjectName="User"
+        <table tableName="user_photo" domainObjectName="UserPhoto"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

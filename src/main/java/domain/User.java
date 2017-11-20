@@ -16,6 +16,7 @@ public class User implements Serializable {
     private int credits;
     private String lastIp;
     private Date lastVisitTime;
+    private int photo;
 
     @Override
     public String toString() {
@@ -28,6 +29,7 @@ public class User implements Serializable {
                 ", credits=" + credits +
                 ", lastIp='" + lastIp + '\'' +
                 ", lastVisitTime=" + lastVisitTime +
+                ", photo=" + photo +
                 '}';
     }
 
@@ -93,5 +95,13 @@ public class User implements Serializable {
 
     public void setLastVisitTime(Date lastVisitTime) {
         this.lastVisitTime = lastVisitTime;
+    }
+
+    public int getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(int photo) {
+        this.photo = photo;
     }
 }

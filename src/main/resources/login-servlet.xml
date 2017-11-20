@@ -14,8 +14,8 @@
 
     <!-- *******************扫描注解，放在application中无效***********************-->
     <context:component-scan base-package="manage.*" >
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+       <!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>-->
     </context:component-scan>
 
     <!-- 默认的注解映射的支持 -->

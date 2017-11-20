@@ -21,7 +21,7 @@ import java.util.Map;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    Logger logger = Logger.getLogger(UserController.class);
+    Logger log = Logger.getLogger(UserController.class);
 
     @Autowired
     private UserService service;
@@ -63,10 +63,35 @@ public class UserController {
         return "redirect:/user/userQueryMethod/";
     }
 
+    /**
+     * 删除用户
+     * @param userId 用户id
+     * @return 跳转到用户列表
+     */
     @RequestMapping(value = "/delete/{id}")
     public String deleteUser(@PathVariable("id")int userId){
         service.deleteByPrimaryKey(userId);
         return "redirect:/user/userQueryMethod/";
+    }
+
+    /**
+     * 添加用户页面
+     * @return 跳转到添加用户页面
+     */
+    @RequestMapping("/addUser")
+    public String addUser(){
+        return "/manage/user/userAdd";
+    }
+
+    /**
+     * 提交新增用户
+     * @param user 用户信息
+     * @return 跳转到用户列表
+     */
+    @RequestMapping(value = "/insertUser" , method = RequestMethod.POST)
+    public String insertUser(User user){
+        service.insertUser(user);
+        return "redirect:/USER/userQueryMethod/";
     }
 
     /**
@@ -81,10 +106,10 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value="/fileinputAjax")
     public Object uploadFileAjax(
-            @RequestPart("file") MultipartFile file,
-            @RequestParam("id") int id) {
+            @RequestPart(value = "file" , required = true) MultipartFile file,
+            @RequestParam(value = "id", required = true) int id) {
 
-        logger.debug("调用的文件上传Method");
+        log.debug("调用的文件上传Method");
         Map<String, Object> mm = new HashMap<String, Object>();
 
         try {

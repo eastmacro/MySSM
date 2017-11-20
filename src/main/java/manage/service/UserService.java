@@ -1,12 +1,15 @@
 package manage.service;
 
 import domain.User;
+import domain.UserPhoto;
 import manage.dao.UserMapper;
+import manage.dao.UserPhotoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +20,9 @@ public class UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserPhotoMapper userPhotoMapper;
 
 
     public List<User> queryAllUsers() {
@@ -35,11 +41,19 @@ public class UserService {
     }
 
 
-    public void updateUserPhoto(MultipartFile file, int id) throws IOException {
-        userMapper.updateUserPhoto(file.getBytes(),id);
+    public void updateUserPhoto(MultipartFile file, int userId) throws IOException {
+        UserPhoto userPhoto = new UserPhoto();
+        userPhoto.setPhoto(file.getBytes());
+        int photoId = userPhotoMapper.insert(userPhoto);
+        userMapper.updateUserPhoto(photoId,userId);
     }
 
     public void deleteByPrimaryKey(int id){
         userMapper.deleteByPrimaryKey(id);
+    }
+
+    public void insertUser(User user) {
+        user.setCreateTime(new Date());
+        userMapper.insertUser(user);
     }
 }

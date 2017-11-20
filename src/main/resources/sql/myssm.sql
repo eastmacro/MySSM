@@ -20,6 +20,7 @@ create table user
 	credits int null,
 	lastIp varchar(45) null,
 	lastVisitTime timestamp null,
+	photo int null,
 	constraint id_UNIQUE
 		unique (id)
 )
@@ -36,4 +37,16 @@ create table user_role_re
 		unique (id)
 )
 ;
+
+create table user_photo
+(
+	id int auto_increment
+		primary key,
+	photo longblob null,
+	constraint user_photo_id_uindex
+		unique (id)
+)
+comment '用户头像存储表'
+;
+
 

@@ -31,7 +31,9 @@
                         <li><a href="#">另一个分离的链接</a></li>--%>
                     </ul>
                 </li>
-            </ul>
-        </div>
-    </div>
+                <li class="active"><a href="<c:url value="/login/logout"/>">登出</a></li>
+</ul>
+
+</div>
+</div>
 </nav>

@@ -26,6 +26,9 @@
     <context:component-scan base-package="bdp.*"/>
     <import resource="classpath:spring-redis.xml"/>
 
+
+    <import resource="spring-shiro.xml"/>
+
     <!-- *********************连接池源********************* -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close" p:driverClassName="${jdbc.driver}">
@@ -96,9 +99,9 @@
 
     <!-- 2.使用切点表达式语言定义目标方法
            AOP配置，事务增强，service包下所有Bean的所有方法拥有事务 -->
-    <aop:config proxy-target-class="true">
+    <aop:config proxy-target-class="true" >
         <!--通过aop定义事务增强切面-->
-        <aop:pointcut id="serviceMethod" expression="execution(* manage.service..*(..))"
+        <aop:pointcut id="serviceMethod" expression="(execution(* manage.service..*(..))) and (execution(* shiro..*(..)))"
         />
         <!--引用事务增强-->
         <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
@@ -118,6 +121,7 @@
             <tx:method name="update" />
         </tx:attributes>
     </tx:advice>
+
 
 
 </beans>

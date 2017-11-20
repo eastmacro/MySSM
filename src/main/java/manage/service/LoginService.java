@@ -1,7 +1,7 @@
 package manage.service;
 
-import manage.dao.UserMapper;
 import domain.User;
+import manage.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

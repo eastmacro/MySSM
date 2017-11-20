@@ -71,4 +71,7 @@
   <select id="selectAll" resultMap="BaseResultMap">
     SELECT * FROM ROLE
   </select>
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    SELECT * FROM ROLE WHERE id IN (SELECT roleId FROM user_role_re WHERE userId = #{userId})
+  </select>
 </mapper>

@@ -23,13 +23,20 @@ $(document).ready(function(){
 
     $(".edit").click(function(){
 	  var userId = $(this).attr("id");
-	  window.location="edit/"+userId;
+	  window.location="/MySSM/user/edit/"+userId;
   });
   
   $(".delete").click(function(){
       var userId = $(this).attr("id");
-      window.location="delete/"+userId;
+      if(confirm("确认删除吗？")){
+          location.href = "/MySSM/user/delete/"+userId;
+      }
   });
+
+
+    $("#addUser").click(function(){
+        window.open("/MySSM/user/addUser");
+    });
 
 
 });
