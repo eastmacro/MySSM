@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/error")
 public class ErrorController {
 
+    /**
+     * 没有权限
+     * @return
+     */
     @RequestMapping("/noPerms")
     public String noPerms(){
         return "/common/error/noPerms";

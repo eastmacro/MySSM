@@ -29,6 +29,11 @@ public class MyRealm extends AuthorizingRealm {
         return "MyRealm";
     }
 
+    /**
+     * 用户访问权限认证
+     * @param principalCollection 身份集合，其包含了Realm验证成功的身份信息
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         int userId = Integer.parseInt(principalCollection.getPrimaryPrincipal().toString());
@@ -47,10 +52,9 @@ public class MyRealm extends AuthorizingRealm {
      *
      * @param token 放着emailAddress和password。
      * @return
-     * @throws AuthenticationException
      */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
         //获取用户email和密码
         String emailAdress = (String) token.getPrincipal();
         String password = new String((char[]) token.getCredentials());

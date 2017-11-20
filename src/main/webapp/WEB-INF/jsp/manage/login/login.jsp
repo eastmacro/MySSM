@@ -28,11 +28,11 @@
         <label for="inputPassword" class="sr-only">Password</label>
         <input name="inputPassword" type="password" id="inputPassword" class="form-control" placeholder="Password"
                required>
-        <!-- <div class="checkbox">
+        <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input name="rememberMe" type="checkbox" id="rememberMe" > Remember me
           </label>
-        </div> -->
+        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 

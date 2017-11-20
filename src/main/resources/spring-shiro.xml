@@ -10,6 +10,8 @@
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
+        <!--remember me 功能-->
+        <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>
 
 
@@ -36,11 +38,12 @@
 
 
                 <!--authc表示需要认证 没有进行身份认证是不能进行访问的-->
-                /user/*=authc
-                /user/edit/*=roles[manager]
-                /user/delete/*=roles[admin]
-                /role=roles[admin]
-                /teacher=perms["user:create"]
+                <!-- roles[manager,admin]表示两个角色都有才有权限 -->
+                <!-- user vs authc，前者是rememberMe情况下可访问，后者需要登陆认证 -->
+                /user/*=user
+                /role/*=user
+                /user/edit/*=authc,roles[admin]
+                /user/delete/*=authc,roles[manager,admin]
             </value>
         </property>
     </bean>
@@ -57,6 +60,29 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
+
+    <!--remember me 功能-->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <!--maxAge=-1 浏览器关闭时失效此Cookie-->
+        <property name="maxAge" value="-1"/>
+    </bean>
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+    </bean>
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager"
+          class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+    <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+        <property name="rememberMeParam" value="rememberMe"/>
+    </bean>
+
 
 
 </beans>
