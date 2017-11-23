@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,7 +31,7 @@
             <c:if test="${!empty loginUser }">
                 <label><em><c:out value="${loginUser } welcome!"/></em></label>
             </c:if>
-            <%-- <form enctype="multipart/form-data" class="form-signin" action="<c:url value="/manage/fileinput"/>" method="POST"> --%>
+            <%-- <form enctype="multipart/form-data" class="form-signin" action="<c:url value="/com.xioruu.manage/fileinput"/>" method="POST"> --%>
             <%--<fieldset>
                 <legend>表单项</legend>
                 <label>表签名</label>
@@ -59,6 +61,11 @@
                     <th>
                         积分
                     </th>
+                    <%--<com.xioruu.shiro:hasRole name="admin">
+                    <th>
+                        创建时间
+                    </th>
+                    </com.xioruu.shiro:hasRole>--%>
                     <th>
                         操作
                     </th>
@@ -80,13 +87,18 @@
                                 ${item.emailAddress }
                         </td>
                         <td>
-                                ${item.lastVisitTime }
+                                <fmt:formatDate type="both" value="${item.lastVisitTime }" />
                         </td>
                         <td>
                                 ${item.credits }
                         </td>
+                        <%--<com.xioruu.shiro:hasRole name="admin">
                         <td>
-                            <button class="btn edit" type="button" id="${item.id}"  href="/manage/edit">修改</button>
+                            <fmt:formatDate type="both" value="${item.createTime}" />
+                        </td>
+                        </com.xioruu.shiro:hasRole>--%>
+                        <td>
+                            <button class="btn edit" type="button" id="${item.id}"  href="/com.xioruu.manage/edit">修改</button>
                             <button class="btn delete" type="button" id="${item.id }" >删除</button>
                         </td>
                     </tr>

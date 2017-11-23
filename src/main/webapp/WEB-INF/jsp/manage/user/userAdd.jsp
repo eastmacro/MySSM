@@ -49,7 +49,7 @@
                     <tr>
                         <td>积分</td>
                         <td><input name="credits" type="credits" id="credits" class="form-control" placeholder="number "
-                                   required autofocus></td>
+                                    autofocus></td>
                     </tr>
 
                     <button type="submit" class="btn btn-submit">提交</button>

@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="domain.User" alias="User"></typeAlias>
+        <typeAlias type="com.xioruu.domain.User" alias="User"></typeAlias>
     </typeAliases>
 
 </configuration>

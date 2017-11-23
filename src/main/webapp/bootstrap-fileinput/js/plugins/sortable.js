@@ -1239,7 +1239,7 @@
 	}
 
 
-	// Export utils
+	// Export com.xioruu.utils
 	KvSortable.utils = {
 		on: _on,
 		off: _off,

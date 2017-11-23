@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.3.xsd
+
+
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+    <context:component-scan base-package="com.xioruu"/>
+    <!-- 1.配置事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource"/>
+
+    <!-- 2.使用切点表达式语言定义目标方法 AOP配置，事务增强，service包下所有Bean的所有方法拥有事务 -->
+    <!-- 见applicationContext-aop.xml -->
+
+
+    <!-- 3.事务增强 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- name与事务属性关联的方法名-->
+            <!-- propagation 传播行为-->
+            <!-- isolated 隔离级别-->
+            <!-- timeout 事务超时时间 -1是由底层事务系统决定-->
+            <!-- readOnly-->
+            <!-- rollback-for和no-rollback-for 什么异常时候回滚、接着提交-->
+            <tx:method name="add*" rollback-for="Exception"/>
+            <tx:method name="get*" read-only="false"/>
+            <tx:method name="update*"/>
+        </tx:attributes>
+    </tx:advice>
+
+</beans>

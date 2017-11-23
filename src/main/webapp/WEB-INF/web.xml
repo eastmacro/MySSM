@@ -19,7 +19,7 @@
     <!-- 逗号，空格分隔多个配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
+        <param-value>classpath:applicationContext/applicationContext-*.xml</param-value>
     </context-param>
 
 
@@ -34,7 +34,7 @@
 
 
 
-    <!-- *************spring mvc****************** -->
+    <!-- *********com.xioruu.springring mvc****************** -->
     <!-- 配置DispatcherServlet -->
     <!-- 每个DispatcherServlet对应一个WebApplicationContext，称为子上下文（子容器） -->
     <!-- 子上下文可以访问父上下文中的内容，但父上下文不能访问子上下文中的内容 -->
@@ -42,12 +42,12 @@
     <!-- 当一个Request对象产生时，会把这个子上下文对象（WebApplicationContext）保存在Request对象中，key是DispatcherServlet.class.getName() + ".CONTEXT" -->
     <!-- 可以使用工具类取出上下文对象：RequestContextUtils.getWebApplicationContext(request); -->
     <servlet>
-        <servlet-name>login</servlet-name>
+        <servlet-name>springMVC</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <!-- 可以自定义配置文件的名称，文件名称为springMVC.xml-->
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:/login-servlet.xml</param-value>
+            <param-value>classpath*:applicationContext/springMVC-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
         <multipart-config>
@@ -62,7 +62,7 @@
     </servlet>
     <!-- 框架会在web应用的 WEB-INF文件夹下寻找名为[servlet-name]-servlet.xml 的配置文件，生成文件中定义的bean -->
     <servlet-mapping>
-        <servlet-name>login</servlet-name>
+        <servlet-name>springMVC</servlet-name>
         <!-- 处理所有请求,REST风格，但是包括了静态资源 -->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
@@ -78,8 +78,7 @@
         <servlet-name>DruidStatView</servlet-name>
         <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
-
-    <!-- *************shiro****************** -->
+    <!-- *********com.xioruu.shirohiro****************** -->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

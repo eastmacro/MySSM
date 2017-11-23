@@ -24,20 +24,20 @@
                         password="123456"/>
 
         <!-- Model存放位置-->
-        <javaModelGenerator targetPackage="domain"
+        <javaModelGenerator targetPackage="com.xioruu.domain"
                             targetProject="C:\Users\xiong\IdeaProjects\MySSMDemo\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- xml文件存放位置-->
-        <sqlMapGenerator targetPackage="manage.dao"
+        <sqlMapGenerator targetPackage="com.xioruu.manage.dao"
                          targetProject="C:\Users\xiong\IdeaProjects\MySSMDemo\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- Dao类存放位置-->
-        <javaClientGenerator targetPackage="manage.dao"
+        <javaClientGenerator targetPackage="com.xioruu.manage.dao"
                              targetProject="C:\Users\xiong\IdeaProjects\MySSMDemo\src\main\java"  type="XMLMAPPER" >
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
