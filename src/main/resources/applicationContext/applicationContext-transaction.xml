@@ -27,15 +27,26 @@
     <!-- 3.事务增强 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <!-- name与事务属性关联的方法名-->
+            <!-- name 与事务属性关联的方法名-->
             <!-- propagation 传播行为-->
             <!-- isolated 隔离级别-->
             <!-- timeout 事务超时时间 -1是由底层事务系统决定-->
-            <!-- readOnly-->
+            <!-- readOnly -->
             <!-- rollback-for和no-rollback-for 什么异常时候回滚、接着提交-->
-            <tx:method name="add*" rollback-for="Exception"/>
-            <tx:method name="get*" read-only="false"/>
-            <tx:method name="update*"/>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="create*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="merge*" propagation="REQUIRED"/>
+            <tx:method name="del*" propagation="REQUIRED"/>
+            <tx:method name="remove*" propagation="REQUIRED"/>
+            <tx:method name="put*" propagation="REQUIRED"/>
+            <tx:method name="use*" propagation="REQUIRED"/>
+            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="count*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="list*" propagation="REQUIRED" read-only="true"/>
         </tx:attributes>
     </tx:advice>
 

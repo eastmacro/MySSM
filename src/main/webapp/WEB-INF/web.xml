@@ -34,7 +34,7 @@
 
 
 
-    <!-- *********com.xioruu.springring mvc****************** -->
+    <!-- *********springring mvc****************** -->
     <!-- 配置DispatcherServlet -->
     <!-- 每个DispatcherServlet对应一个WebApplicationContext，称为子上下文（子容器） -->
     <!-- 子上下文可以访问父上下文中的内容，但父上下文不能访问子上下文中的内容 -->
