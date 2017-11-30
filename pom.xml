@@ -5,12 +5,16 @@
 
     <groupId>com.xioruu</groupId>
     <artifactId>mydemo</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-
+    <modules>
+        <module>SSM-SERVICE</module>
+        <module>SSM-API</module>
+    </modules>
 
 
     <properties>
+        <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <spring.version>4.3.2.RELEASE</spring.version>
         <mybatis.version>3.4.2</mybatis.version>
         <log4j.version>1.2.17</log4j.version>
