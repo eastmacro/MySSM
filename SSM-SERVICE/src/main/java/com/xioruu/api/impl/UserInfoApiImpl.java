@@ -21,6 +21,9 @@ public class UserInfoApiImpl implements UserInfoApi {
     private UserService userService;
 
 
+    /*
+    提供用户信息
+     */
     @Override
     public UserInfo getUserInfo(int userId) {
         UserInfo userInfo = new UserInfo();

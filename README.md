@@ -1,7 +1,7 @@
 # MySSM
 
 ### 相关技术
-Spring MVC + Spring + Mybatis + Mysql + Shiro + Redis + dubbo + zookeeper
+Spring MVC + Spring + Mybatis + Mysql + Shiro + Redis + Dubbo + Zookeeper
 
 ### 目录结构
 ```shell
@@ -11,7 +11,7 @@ Spring MVC + Spring + Mybatis + Mysql + Shiro + Redis + dubbo + zookeeper
 │      │  ├─java
 │      │  │  └─com
 │      │  │      └─xioruu
-│      │  │          ├─api
+│      │  │          ├─api          
 │      │  │          └─dto
 │      │  └─resources
 │      └─test
@@ -48,14 +48,14 @@ Spring MVC + Spring + Mybatis + Mysql + Shiro + Redis + dubbo + zookeeper
 │       │  │  └─sql                     //数据库脚本
 │       │  └─webapp                     //前端文件
 │       │      ├─bootstrap
-│       │      ├─bootstrap-fileinput
+│       │      ├─bootstrap-fileinput    //图片上传
 │       │      ├─jquery
 │       │      ├─js
 │       │      └─WEB-INF
 │       │          └─jsp                
 │       │              ├─common         //公用页面
 │       │              │  └─error
-│       │              └─manage         
+│       │              └─manage         //业务页面
 │       │                  ├─login
 │       │                  └─user
 │       └─test
@@ -71,6 +71,7 @@ Spring MVC + Spring + Mybatis + Mysql + Shiro + Redis + dubbo + zookeeper
 ├─readme.md
 ```
 
+
 ### 应用截图
 ![登陆](https://blogcase-1256125353.cos.ap-shanghai.myqcloud.com/%E7%99%BB%E9%99%86.PNG)
 ![用户列表](https://blogcase-1256125353.cos.ap-shanghai.myqcloud.com/%E7%94%A8%E6%88%B7%E5%88%97%E8%A1%A8.PNG)
@@ -81,6 +82,7 @@ Spring MVC + Spring + Mybatis + Mysql + Shiro + Redis + dubbo + zookeeper
 
 ### 相关文章
 [xioruu's blog：zookeeper集群配置](http://xioruu.github.io/2017/12/18/zookeeper集群配置/)
+
 
 ### 需要修改的配置
 #### mysql
@@ -96,9 +98,10 @@ jdbc.password=123456
 ```properties
 redis.host=192.168.0.100
 ```
+
 #### zookeeper
-修改SSM-API中的applicationContext-dubbo-consumer.xml
-修改SSM-SERVICE中的applicationContext-dubbo-provider.xml
+1. 修改SSM-API中的applicationContext-dubbo-consumer.xml
+2. 修改SSM-SERVICE中的applicationContext-dubbo-provider.xml
 ```xml
 <dubbo:registry address="zookeeper://192.168.0.100:2181"/>
 ```
@@ -106,7 +109,7 @@ redis.host=192.168.0.100
 
 ### 几点说明
 - 服务器启动前需要先启动zookeeper
-- redis不启动不会影响服务器启动，之后获取用户信息时会报错但不影响使用。
-- 服务器端口设为8090，设为8080会冲突
+- redis不启动不会影响服务器启动，之后获取用户信息时会报错但不影响使用
+- 端口设为8090而不是8080
 
 
