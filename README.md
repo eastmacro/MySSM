@@ -1,7 +1,11 @@
 # MySSM
 
 ### 相关技术
-Spring MVC + Spring + Mybatis + Mysql + Shiro + Redis + Dubbo + Zookeeper
+前端：Bootstrap、Bootstrap Fileinput插件
+框架：Spring MVC、Spring、Mybatis
+分布式框架：Dubbo、Zookeeper
+连接池：Durid
+数据库：Mysql、Redis
 
 ### 目录结构
 ```shell
